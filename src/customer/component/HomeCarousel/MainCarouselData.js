@@ -1,0 +1,21 @@
+export const mainCarouseldata = [
+    {
+        image:"https://www.bizzbuzz.news/h-upload/2025/01/03/1950147-five-mind-blowing-smartphones-coming-in-2025-iphone-17-galaxy-s25-and-more.webp",
+        path:""
+    },
+    {
+        image:"https://static-assets.business.amazon.com/assets/in/24th-jan/705_Website_Blog_Appliances_1450x664.jpg.transform/1450x664/image.jpg",
+        path:""
+    },
+    {
+        image:"https://aspirestore.co.uk/64747-thickbox_default/build-your-bed.jpg",
+        path:""
+    },
+    {
+        image:"https://i.rtings.com/assets/pages/IxCXzynA/best-apple-laptops-20241009-medium.jpg?format=auto",
+        path:""
+    },{
+        image:"https://image.made-in-china.com/380f0j00EYRGJfbCRQlI/What-Are-the-Most-Trending-E-Commerce-Products-Dominating-2025-.jpg",
+        path:""
+    }
+]
