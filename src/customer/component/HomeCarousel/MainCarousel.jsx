@@ -12,7 +12,7 @@ const responsive = {
 
 
 
-const MainCarousel = () => {
+export const MainCarousel = () => {
         // const items = mainCarouseldata
     
     const items = mainCarouseldata.map((items) => <div className='w-10rem h-150 p-5 pl-10 pr-10'><img className='cursor-pointer w-full h-full' role='presentation' src={items.image} alt="" /></div>)
@@ -28,6 +28,6 @@ const MainCarousel = () => {
             buttonsDisabled
             // controlsStrategy="alternate"
         />
+        
     )
 };
-export default MainCarousel

@@ -1,44 +1,19 @@
-import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Navigation from './customer/component/Navigation/Navigation'
-import HomePage from './customer/pages/Homepage/HomePage'
-import Footer from './customer/component/Footer/Footer'
-import Product from './customer/component/Product/Product'
-import ProductDetail from './customer/component/ProductDetail/ProductDetail';
-import Cart from './customer/component/Cart/Cart';
-import CheckOut from './customer/component/CheckOut/CheckOut';
-import Order from './customer/component/Order/Order';
-import OrderDetail from './customer/component/Order/OrderDetail';
-import CustomerRoutes from './Routes/CustomerRoutes';
-import OrderCard from './customer/component/Order/OrderCard';
-
+import { useSelector } from "react-redux";
+import { Route, Routes, Navigate } from "react-router-dom";
+import CustomerRoutes from "./Routes/CustomerRoutes";
+import AdminRouters from "./Routes/AdminRouters";
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const { auth } = useSelector((store) => store);
+  const role = localStorage.getItem("role");
 
   return (
-    <>
-      <div>
-
-        <Routes>
-          <Route path='/*' element={<CustomerRoutes/>}></Route>
-
-        </Routes>
-        {/* <Navigation/> */}
-          {/* <OrderDetail/> */}
-          {/* <OrderCard/> */}
-
-        {/* Hello E-commerce */}
-        
-        
-        
-      </div>
-      
-    </>
-  )
+    <Routes>
+  <Route path="/*" element={<CustomerRoutes />} />
+  <Route path="/admin/*" element={<AdminRouters />} />
+</Routes>
+  );
 }
 
-export default App
+export default App;

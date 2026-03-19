@@ -13,7 +13,7 @@ function AddressCard({ address }) {
         </p>
 
         <p className="text-gray-600">
-          {address?.streetAddress}
+          {address?.streetaddress}
         </p>
 
         <p className="text-gray-600">

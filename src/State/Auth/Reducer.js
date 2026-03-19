@@ -1,52 +1,81 @@
-import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType";
+import { 
+    GET_USER_FAILURE, 
+    GET_USER_REQUEST, 
+    GET_USER_SUCCESS, 
+    LOGIN_FAILURE, 
+    LOGIN_REQUEST, 
+    LOGIN_SUCCESS, 
+    LOGOUT, 
+    REGISTER_FAILURE, 
+    REGISTER_REQUEST, 
+    REGISTER_SUCCESS 
+} from "./ActionType";
 
 const initialState = {
-    user:null,
-    isLoading:false,
-    error:null,
-    jwt:null
-}
+    user: null,
+    isLoading: false,
+    error: null,
+    jwt: null
+};
 
-export  const authReducer = (state=initialState,action) =>{
-
-    switch(action.type){
-        case  REGISTER_REQUEST :
-        case LOGIN_REQUEST :
+export const authReducer = (state = initialState, action) => {
+    switch (action.type) {
+        // Handle all loading states together
+        case REGISTER_REQUEST:
+        case LOGIN_REQUEST:
         case GET_USER_REQUEST:
-            return{
+            return {
                 ...state,
-                isLoading:true,
-                error:null
-            }
-        case  REGISTER_SUCCESS :
-        case LOGIN_SUCCESS :
-            return{
+                isLoading: true,
+                error: null
+            };
+
+        // Handle successful registration and login
+        case REGISTER_SUCCESS:
+            return {
                 ...state,
-                isLoading:false,
-                error:null,
-                jwt:action.payload
-            }
+                isLoading: false, // Stops the loading spinner
+                jwt: action.payload.jwt,
+                user: action.payload, 
+                error: null,
+            };
+        case LOGIN_SUCCESS:
+    return {
+        ...state,
+        isLoading: false,
+        jwt: action.payload.jwt,
+        user: {
+            role: action.payload.role
+        },
+        error: null
+    };
+
+        // Handle profile fetch success
         case GET_USER_SUCCESS:
-            return{
+            return {
                 ...state,
-                isLoading:false,    
-                error:null,
-                user:action.payload
-            }
-        case REGISTER_FAILURE :
-        case LOGIN_FAILURE :
+                isLoading: false,
+                user: action.payload,
+                error: null,
+            };
+
+        // Handle all failure states together
+        case REGISTER_FAILURE:
+        case LOGIN_FAILURE:
         case GET_USER_FAILURE:
-            return{
+            return {
                 ...state,
-                isLoading:false,
-                error:action.payload
-            }
+                isLoading: false, // Stops the loading spinner even on error
+                error: action.payload
+            };
+
+        // Reset state on logout
         case LOGOUT:
-            return{
+            return {
                 ...initialState
-            }
+            };
+
         default:
             return state;
     }
-
-}
+};
